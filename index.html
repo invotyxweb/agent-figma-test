@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Landing Page</title>
+    <style>
+        /* Modern CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Color Variables */
+        :root {
+            --primary-50: #eff6ff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+
+        /* Layout Utilities */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .block { display: block; }
+        .inline-flex { display: inline-flex; }
+
+        /* Positioning */
+        .fixed { position: fixed; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+
+        /* Spacing */
+        .p-1 { padding: 0.25rem; } .p-2 { padding: 0.5rem; } .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; } .p-6 { padding: 1.5rem; } .p-8 { padding: 2rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-16 { padding-top: 4rem; }
+        .pb-3 { padding-bottom: 0.75rem; }
+        .ml-2 { margin-left: 0.5rem; } .ml-3 { margin-left: 0.75rem; }
+        .ml-4 { margin-left: 1rem; } .ml-6 { margin-left: 1.5rem; }
+        .ml-10 { margin-left: 2.5rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .mt-2 { margin-top: 0.5rem; } .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; } .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; } .mt-12 { margin-top: 3rem; }
+        .mt-16 { margin-top: 4rem; }
+        .mb-2 { margin-bottom: 0.5rem; } .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+
+        /* Sizing */
+        .w-6 { width: 1.5rem; } .w-12 { width: 3rem; } .w-24 { width: 6rem; }
+        .w-full { width: 100%; } .w-1\/2 { width: 50%; }
+        .h-6 { height: 1.5rem; } .h-12 { height: 3rem; } .h-16 { height: 4rem; }
+        .h-24 { height: 6rem; }
+        .max-w-lg { max-width: 32rem; } .max-w-2xl { max-width: 42rem; }
+        .max-w-7xl { max-width: 80rem; } .max-w-none { max-width: none; }
+        .max-w-sm { max-width: 24rem; } .max-w-md { max-width: 28rem; }
+
+        /* Flexbox */
+        .items-center { align-items: center; }
+        .items-baseline { align-items: baseline; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .flex-col { flex-direction: column; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .flex-1 { flex: 1; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-x-6 > * + * { margin-left: 1.5rem; }
+        .space-y-1 > * + * { margin-top: 0.25rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+
+        /* Grid */
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .gap-4 { gap: 1rem; } .gap-6 { gap: 1.5rem; } .gap-8 { gap: 2rem; }
+
+        /* Colors */
+        .bg-white { background-color: #ffffff; }
+        .bg-gray-50 { background-color: var(--gray-50); }
+        .bg-gray-100 { background-color: var(--gray-100); }
+        .bg-gray-900 { background-color: var(--gray-900); }
+        .bg-primary-50 { background-color: var(--primary-50); }
+        .bg-primary-100 { background-color: #dbeafe; }
+        .bg-primary-600 { background-color: var(--primary-600); }
+        .bg-primary-700 { background-color: var(--primary-700); }
+        
+        .text-white { color: #ffffff; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-400 { color: var(--gray-400); }
+        .text-gray-500 { color: var(--gray-500); }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-700 { color: var(--gray-700); }
+        .text-gray-900 { color: var(--gray-900); }
+        .text-primary-600 { color: var(--primary-600); }
+        .text-primary-700 { color: var(--primary-700); }
+
+        /* Typography */
+        .text-xs { font-size: 0.75rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-base { font-size: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+        .text-6xl { font-size: 3.75rem; }
+
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .font-extrabold { font-weight: 800; }
+
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .leading-8 { line-height: 2rem; }
+        .tracking-tight { letter-spacing: -0.025em; }
+        .tracking-wide { letter-spacing: 0.025em; }
+        .uppercase { text-transform: uppercase; }
+
+        /* Borders */
+        .border { border-width: 1px; }
+        .border-t { border-top-width: 1px; }
+        .border-gray-100 { border-color: var(--gray-100); }
+        .border-gray-300 { border-color: var(--gray-300); }
+        .border-gray-700 { border-color: #374151; }
+        .border-transparent { border-color: transparent; }
+        .rounded { border-radius: 0.25rem; }
+        .rounded-md { border-radius: 0.375rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-full { border-radius: 9999px; }
+
+        /* Shadows */
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+
+        /* Hover states */
+        .hover\:bg-gray-50:hover { background-color: var(--gray-50); }
+        .hover\:bg-gray-100:hover { background-color: var(--gray-100); }
+        .hover\:bg-primary-700:hover { background-color: var(--primary-700); }
+        .hover\:text-primary-600:hover { color: var(--primary-600); }
+        .hover\:text-gray-200:hover { color: #e5e7eb; }
+        .hover\:text-gray-300:hover { color: #d1d5db; }
+        .hover\:text-gray-500:hover { color: var(--gray-500); }
+        .hover\:text-white:hover { color: #ffffff; }
+        .hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .hover\:shadow-xl:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+
+        /* Transitions */
+        .transition-colors { transition-property: color, background-color, border-color; transition-duration: 200ms; }
+        .transition-shadow { transition-property: box-shadow; transition-duration: 300ms; }
+        .transition-all { transition-property: all; transition-duration: 200ms; }
+        .duration-200 { transition-duration: 200ms; }
+        .duration-300 { transition-duration: 300ms; }
+        .ease-out { transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+
+        /* Z-index */
+        .z-50 { z-index: 50; }
+
+        /* Overflow */
+        .overflow-hidden { overflow: hidden; }
+
+        /* Navigation Styles */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Gradients */
+        .bg-gradient-to-br {
+            background-image: linear-gradient(to bottom right, var(--primary-50), #ffffff);
+        }
+
+        .bg-gradient-hero {
+            background-image: linear-gradient(to bottom right, var(--primary-400), var(--primary-600));
+        }
+
+        /* Icons (Font Awesome alternatives using Unicode) */
+        .icon-bars::before { content: '☰'; }
+        .icon-times::before { content: '✕'; }
+        .icon-arrow-right::before { content: '→'; }
+        .icon-play::before { content: '▶'; }
+        .icon-rocket::before { content: '🚀'; }
+        .icon-mobile::before { content: '📱'; }
+        .icon-bolt::before { content: '⚡'; }
+        .icon-shield::before { content: '🛡'; }
+        .icon-palette::before { content: '🎨'; }
+        .icon-cogs::before { content: '⚙'; }
+        .icon-users::before { content: '👥'; }
+        .icon-check::before { content: '✓'; }
+        .icon-lightbulb::before { content: '💡'; }
+        .icon-phone::before { content: '📞'; }
+        .icon-envelope::before { content: '✉'; }
+        .icon-map-marker::before { content: '📍'; }
+        .icon-facebook::before { content: 'f'; }
+        .icon-twitter::before { content: 't'; }
+        .icon-github::before { content: 'g'; }
+        .icon-linkedin::before { content: 'in'; }
+
+        /* Hero section specific styles */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-50) 0%, #ffffff 100%);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Button styles */
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Form styles */
+        input, textarea {
+            outline: none;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Feature card hover effects */
+        .feature-card {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Responsive design */
+        @media (min-width: 640px) {
+            .sm\:text-center { text-align: center; }
+            .sm\:text-xl { font-size: 1.25rem; }
+            .sm\:text-5xl { font-size: 3rem; }
+            .sm\:mt-5 { margin-top: 1.25rem; }
+            .sm\:max-w-lg { max-width: 32rem; }
+            .sm\:mx-auto { margin-left: auto; margin-right: auto; }
+            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sm\:flex-row { flex-direction: row; }
+            .sm\:text-4xl { font-size: 2.25rem; }
+            .sm\:mt-16 { margin-top: 4rem; }
+        }
+
+        @media (min-width: 768px) {
+            .md\:text-6xl { font-size: 3.75rem; }
+            .md\:max-w-2xl { max-width: 42rem; }
+            .md\:max-w-none { max-width: none; }
+            .md\:mx-auto { margin-left: auto; margin-right: auto; }
+            .md\:block { display: block; }
+            .md\:hidden { display: none; }
+            .md\:ml-6 { margin-left: 1.5rem; }
+            .md\:grid { display: grid; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:gap-8 { gap: 2rem; }
+            .md\:mt-0 { margin-top: 0; }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+            .lg\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+            .lg\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+            .lg\:grid { display: grid; }
+            .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .lg\:gap-8 { gap: 2rem; }
+            .lg\:col-span-6 { grid-column: span 6 / span 6; }
+            .lg\:text-left { text-align: left; }
+            .lg\:text-lg { font-size: 1.125rem; }
+            .lg\:mx-0 { margin-left: 0; margin-right: 0; }
+            .lg\:mt-0 { margin-top: 0; }
+            .lg\:max-w-none { max-width: none; }
+            .lg\:max-w-md { max-width: 28rem; }
+            .lg\:flex { display: flex; }
+            .lg\:items-center { align-items: center; }
+            .lg\:text-center { text-align: center; }
+        }
+
+        @media (min-width: 1280px) {
+            .xl\:text-xl { font-size: 1.25rem; }
+            .xl\:grid { display: grid; }
+            .xl\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .xl\:gap-8 { gap: 2rem; }
+            .xl\:col-span-1 { grid-column: span 1 / span 1; }
+            .xl\:col-span-2 { grid-column: span 2 / span 2; }
+            .xl\:mt-0 { margin-top: 0; }
+            .xl\:text-center { text-align: center; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-600);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-700);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="container">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-2xl font-bold text-primary-700">ModernWeb</h1>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#home" class="nav-link text-gray-900 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Home</a>
+                            <a href="#features" class="nav-link text-gray-500 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</a>
+                            <a href="#about" class="nav-link text-gray-500 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</a>
+                            <a href="#contact" class="nav-link text-gray-500 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Contact</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 shadow-md hover:shadow-lg">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="bg-gray-50 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                        <span class="icon-bars text-lg"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pb-3 space-y-1 bg-white shadow-lg">
+                <a href="#home" class="mobile-nav-link text-gray-900 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#features" class="mobile-nav-link text-gray-500 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">Features</a>
+                <a href="#about" class="mobile-nav-link text-gray-500 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#contact" class="mobile-nav-link text-gray-500 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <div class="px-3 py-2">
+                    <button class="w-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section pt-16">
+        <div class="container py-20 lg:py-32">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="lg:col-span-6 lg:text-left">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                        <span class="block">Build the future</span>
+                        <span class="block text-primary-600">with modern design</span>
+                    </h1>
+                    <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                        Create stunning, responsive websites with cutting-edge technology. Our platform provides everything you need to bring your vision to life with beautiful, functional design.
+                    </p>
+                    <div class="mt-8 sm:max-w-lg sm:mx-auto lg:text-left lg:mx-0">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors duration-200 shadow-lg hover:shadow-xl">
+                                Start Building
+                                <span class="icon-arrow-right ml-2"></span>
+                            </button>
+                            <button class="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200 shadow-md hover:shadow-lg">
+                                <span class="icon-play mr-2"></span>
+                                Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 relative lg:mt-0 lg:col-span-6 lg:flex lg:items-center">
+                    <div class="relative mx-auto w-full rounded-lg shadow-2xl lg:max-w-md">
+                        <div class="relative block w-full bg-white rounded-lg overflow-hidden">
+                            <div class="bg-gradient-hero flex items-center justify-center" style="height: 300px;">
+                                <span class="icon-rocket text-white text-6xl"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container">
+            <div class="lg:text-center">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Everything you need to succeed
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Our comprehensive platform offers powerful tools and features designed to help you create amazing digital experiences.
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="icon-mobile text-primary-600 text-xl"></span>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Responsive Design</h3>
+                        <p class="text-gray-500">
+                            Your designs look perfect on every device, from mobile phones to desktop computers.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="icon-bolt text-primary-600 text-xl"></span>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Lightning Fast</h3>
+                        <p class="text-gray-500">
+                            Optimized performance ensures your website loads quickly and keeps users engaged.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="icon-shield text-primary-600 text-xl"></span>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Secure & Reliable</h3>
+                        <p class="text-gray-500">
+                            Built with security best practices and reliable infrastructure you can trust.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="icon-palette text-primary-600 text-xl"></span>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Beautiful UI</h3>
+                        <p class="text-gray-500">
+                            Material Design principles ensure your interface is both beautiful and intuitive.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="icon-cogs text-primary-600 text-xl"></span>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Easy Customization</h3>
+                        <p class="text-gray-500">
+                            Flexible components and styling options make customization simple and powerful.
+                        </p>
+                    </div>
+
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="icon-users text-primary-600 text-xl"></span>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Team Collaboration</h3>
+                        <p class="text-gray-500">
+                            Work together seamlessly with built-in collaboration tools and real-time updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        About Our Platform
+                    </h2>
+                    <p class="mt-3 text-lg text-gray-500">
+                        We're passionate about creating tools that empower designers and developers to build exceptional digital experiences. Our platform combines the best of modern web technology with intuitive design principles.
+                    </p>
+                    <div class="mt-8 space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Modern Technology Stack</h3>
+                                <p class="text-gray-500">Built with the latest web technologies for optimal performance and scalability.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">User-Centered Design</h3>
+                                <p class="text-gray-500">Every feature is designed with the user experience in mind, ensuring intuitive interactions.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Continuous Innovation</h3>
+                                <p class="text-gray-500">We're constantly improving and adding new features based on user feedback.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 lg:mt-0">
+                    <div class="bg-white rounded-lg shadow-xl p-8">
+                        <div class="text-center">
+                            <div class="bg-gradient-to-br from-primary-400 to-primary-600 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-lightbulb text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Innovation at Core</h3>
+                            <p class="text-gray-600 mb-6">
+                                We believe in pushing the boundaries of what's possible on the web, creating tools that inspire creativity and drive results.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-primary-600">500+</div>
+                                    <div class="text-sm text-gray-500">Projects</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-primary-600">99.9%</div>
+                                    <div class="text-sm text-gray-500">Uptime</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-lg mx-auto md:max-w-none md:grid md:grid-cols-2 md:gap-8">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-gray-900 sm:text-3xl">
+                        Get in Touch
+                    </h2>
+                    <div class="mt-3">
+                        <p class="text-lg text-gray-500">
+                            Ready to start your next project? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                        </p>
+                    </div>
+                    <div class="mt-9">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-phone text-primary-600 text-xl"></i>
+                            </div>
+                            <div class="ml-3 text-base text-gray-500">
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-envelope text-primary-600 text-xl"></i>
+                            </div>
+                            <div class="ml-3 text-base text-gray-500">
+                                <p>hello@modernweb.com</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary-600 text-xl"></i>
+                            </div>
+                            <div class="ml-3 text-base text-gray-500">
+                                <p>123 Innovation Drive<br>Tech City, TC 12345</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 sm:mt-16 md:mt-0">
+                    <form id="contact-form" class="grid grid-cols-1 gap-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <div class="mt-1">
+                                <input type="text" name="name" id="name" autocomplete="name" class="py-3 px-4 block w-full shadow-md focus:ring-primary-500 focus:border-primary-500 border-gray-300 rounded-md" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <div class="mt-1">
+                                <input type="email" name="email" id="email" autocomplete="email" class="py-3 px-4 block w-full shadow-md focus:ring-primary-500 focus:border-primary-500 border-gray-300 rounded-md" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <div class="mt-1">
+                                <textarea name="message" id="message" rows="4" class="py-3 px-4 block w-full shadow-md focus:ring-primary-500 focus:border-primary-500 border-gray-300 rounded-md" required></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-md text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <h3 class="text-2xl font-bold text-white">ModernWeb</h3>
+                    <p class="text-gray-300 text-base">
+                        Building the future of web design with modern tools and beautiful interfaces.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors duration-200">
+                            <span class="sr-only">Facebook</span>
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors duration-200">
+                            <span class="sr-only">Twitter</span>
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors duration-200">
+                            <span class="sr-only">GitHub</span>
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors duration-200">
+                            <span class="sr-only">LinkedIn</span>
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Solutions</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Web Design</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Development</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Consulting</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Analytics</a></li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Documentation</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Guides</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">API Status</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">About</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Blog</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Jobs</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Press</a></li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                            <ul class="mt-4 space-y-4">
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Privacy</a></li>
+                                <li><a href="#" class="text-base text-gray-300 hover:text-white transition-colors duration-200">Terms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8">
+                <p class="text-base text-gray-400 xl:text-center">
+                    &copy; 2024 ModernWeb. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
